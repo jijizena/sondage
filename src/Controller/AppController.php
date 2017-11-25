@@ -48,7 +48,7 @@ class AppController extends Controller
             'authenticate' => [
                 'Form' => [
                     'fields' => [
-                        'nickname' => 'nickname',
+                        'username' => 'nickname',
                         'password' => 'password'
                     ],
                     'passwordHasher' => 'Default',
@@ -90,5 +90,8 @@ class AppController extends Controller
         ) {
             $this->set('_serialize', true);
         }
+        
+        $nickname = $this->request->session()->read('Auth.User.nickname');
+        $this->set(compact('nickname'));
     }
 }

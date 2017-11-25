@@ -24,6 +24,7 @@
             <button type="button" class="btn btn-light"><?= __('Mes sondages') ?></button>
         </a>
       </li>
+      <?php if(empty($nickname)): ?>
       <li class="nav-item">
         <a class="nav-link" href="<?= $this->Url->build([
             'controller'=>'Users',
@@ -32,9 +33,10 @@
             <button type="button" class="btn btn-primary"><?= __('Se connecter') ?></button>
         </a>
       </li>
+      <?php else: ?>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Username
+          <?= $nickname ?>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="#"><?= __('Profil') ?></a>
@@ -45,6 +47,7 @@
         ]) ?>"><?= __('Se déconnecter') ?></a>
         </div>
       </li>
+      <?php endif; ?>
     </ul>
   </div>
 </nav>
