@@ -44,8 +44,11 @@ $this->assign('title',$title);
               </li>
           </ul>
         <p class="meta">
-            <?= __('par') ?> <?= $survey->has('user') ? $this->Html->link($survey->user->id, ['controller' => 'Users', 'action' => 'view', $survey->user->id]) : '' ?>
-            <?= __('le') ?> <?= h($survey->created) ?>
+            <?= __('créé par') ?> <?= $survey->has('user') ? $this->Html->link($survey->user->nickname, ['controller' => 'Users', 'action' => 'view', $survey->user->id]) : '' ?>,
+            <?= __('le') ?> <?= h($this->Time->format(
+  $survey->created,'dd/MM/yyyy',
+  null
+)) ?>
         </p>
 
         <td><?= h($survey->modified) ?></td>
