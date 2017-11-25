@@ -257,3 +257,8 @@ body {
 	margin-right:15px;
 	background-color: #FFE;
 }
+
+.meta {
+    font-style:italic;
+    font-size:0.85em;
+}
