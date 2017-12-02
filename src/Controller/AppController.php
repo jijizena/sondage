@@ -90,8 +90,8 @@ class AppController extends Controller
         ) {
             $this->set('_serialize', true);
         }
-        
-        $nickname = $this->request->session()->read('Auth.User.nickname');
-        $this->set(compact('nickname'));
+        //debug($this);die;
+        $user = $this->Auth->user();     //$this->request->session()->read('Auth.User');
+        $this->set(compact('user'));
     }
 }

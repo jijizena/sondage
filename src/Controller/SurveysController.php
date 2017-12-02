@@ -18,6 +18,15 @@ class SurveysController extends AppController
         $this->Auth->allow(['getSurveysByUserId']);
     }
     
+    public function isAuthorized($user) {
+        $user = $this->Auth->user();
+        if(empty($user)) return false;
+        
+        if($this->request->getParam('action')=='add') {
+            return true;
+        }
+    }
+    
     /**
      * Index method
      *
@@ -123,16 +132,21 @@ class SurveysController extends AppController
     
     public function getSurveysByUserId($id = null)
     {
-        $this->paginate = [
-            'contain' => ['Users']
-        ];
-        
-        //Récupérer les sondages du user donné
-        $query = $this->Surveys->find('all')
-                ->where(['user_id'=>$id])
-                ->contain(['Responses']);
-        
-        //Envoyer vers la vue
-        $this->set('surveys',$this->paginate($query));
+        if($id==$this->Auth->user('id')) {
+            $this->paginate = [
+                'contain' => ['Users']
+            ];
+
+            //Récupérer les sondages du user donné
+            $query = $this->Surveys->find('all')
+                    ->where(['user_id'=>$id])
+                    ->contain(['Responses']);
+
+            //Envoyer vers la vue
+            $this->set('surveys',$this->paginate($query));
+        } else {
+            $this->Flash->error("Vous n'êtes pas autorisé à afficher d'autres sondages.");
+            return $this->redirect(['action' => 'index']);
+        }
     }
 }
