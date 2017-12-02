@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\ORM\TableRegistry;
 
 /**
  * Surveys Controller
@@ -67,6 +68,16 @@ class SurveysController extends AppController
      */
     public function add()
     {
+        if($newResponses = $this->request->data['new_responses']) {
+            $newResponses = explode(',', $newResponses);
+            $newResponses = array_map('trim',$newResponses);
+            
+            $responses = TableRegistry::get('responses');
+            $responses->save($entity);
+            debug();
+        }
+        
+        die;
         $survey = $this->Surveys->newEntity();
         if ($this->request->is('post')) {
             $survey = $this->Surveys->patchEntity($survey, $this->request->getData());

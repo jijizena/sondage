@@ -19,9 +19,10 @@
     <fieldset>
         <legend><?= __('Add Survey') ?></legend>
         <?php
-            echo $this->Form->control('user_id', ['options' => $users]);
+            echo $this->Form->hidden('user_id', ['value' => $user['id']]);
             echo $this->Form->control('question');
             echo $this->Form->control('responses._ids', ['options' => $responses]);
+            echo $this->Form->control('new_responses');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
