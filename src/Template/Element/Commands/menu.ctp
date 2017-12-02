@@ -11,14 +11,6 @@
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><?= __('Rechercher') ?></button>
     </form>
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="<?= $this->Url->build([
-            'controller'=>'Surveys',
-            'action'=>'add'
-            ]); ?>">
-            <button type="button" class="btn btn-success"><?= __('Nouveau sondage') ?></button>
-        </a>
-      </li>
       <?php if(empty($user)): ?>
       <li class="nav-item">
         <a class="nav-link" href="<?= $this->Url->build([
@@ -29,6 +21,14 @@
         </a>
       </li>
       <?php else: ?>
+      <li class="nav-item">
+        <a class="nav-link" href="<?= $this->Url->build([
+            'controller'=>'Surveys',
+            'action'=>'add'
+            ]); ?>">
+            <button type="button" class="btn btn-success"><?= __('Nouveau sondage') ?></button>
+        </a>
+      </li>
       <li class="nav-item">
         <a class="nav-link" href="<?= $this->Url->build([
             'controller'=>'Surveys',
