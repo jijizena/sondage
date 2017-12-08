@@ -19,7 +19,7 @@ class SurveysControllerTest extends IntegrationTestCase
         'app.surveys',
         'app.users',
         'app.responses',
-        'app.responses_surveys'
+       /* 'app.responses_surveys'*/
     ];
 
     /**

@@ -91,7 +91,7 @@ class AppController extends Controller
             $this->set('_serialize', true);
         }
         //debug($this);die;
-        $user = $this->Auth->user();     //$this->request->session()->read('Auth.User');
+        $user = ($this->Auth)? $this->Auth->user(): false;     //$this->request->session()->read('Auth.User');
         $this->set(compact('user'));
     }
 }
